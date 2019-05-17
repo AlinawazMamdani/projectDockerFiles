@@ -10,7 +10,7 @@ services:
       -  MYSQL_DATABASE=todo_list
     volumes:
       - type: volume
-        source: mysqldata
+        source: mysqldataa
         target: /var/lib/mysql
   backend:
     image: app
@@ -33,5 +33,5 @@ services:
       - backend
 
 volumes:
-  mysqldata:
+  mysqldataa:
 
