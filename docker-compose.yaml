@@ -1,7 +1,6 @@
 version: "3.7"
 services:
   frontend:
-    image: appy
     build: /var/jenkins_home/workspace/frontend/
   mysql:
     image: mysql:5.7
@@ -13,7 +12,6 @@ services:
         source: mysqldataa
         target: /var/lib/mysql
   backend:
-    image: app
     build: /var/jenkins_home/workspace/backend/
     depends_on:
       - mysql
