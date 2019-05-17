@@ -2,7 +2,7 @@ version: "3.7"
 services:
   frontend:
     image: appy
-    build: ./endpoint-for-docker
+    build: /var/jenkins_home/workspace/frontend/reactTodoFrontEnd
   mysql:
     image: mysql:5.7
     environment:
@@ -14,7 +14,7 @@ services:
         target: /var/lib/mysql
   backend:
     image: app
-    build: ./TodoLogicSpring
+    build: /var/jenkins_home/workspace/backend/TodoLogicSpring
     depends_on:
       - mysql
 
@@ -22,7 +22,7 @@ services:
     image: nginx:latest
     volumes:
       - type: bind
-        source: ./nginx.conf
+        source: /var/jenkins_home/workspace/jenkins-docker/nginx.conf
         target: /etc/nginx/nginx.conf
     ports:
       - target: 80
