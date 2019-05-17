@@ -1,0 +1,37 @@
+version: "3.7"
+services:
+  frontend:
+    image: appy
+    build: ./endpoint-for-docker
+  mysql:
+    image: mysql:5.7
+    environment:
+      -  MYSQL_ROOT_PASSWORD=password
+      -  MYSQL_DATABASE=todo_list
+    volumes:
+      - type: volume
+        source: mysqldata
+        target: /var/lib/mysql
+  backend:
+    image: app
+    build: ./TodoLogicSpring
+    depends_on:
+      - mysql
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - type: bind
+        source: ./nginx.conf
+        target: /etc/nginx/nginx.conf
+    ports:
+      - target: 80
+        published: 80
+        protocol: tcp
+    depends_on:
+      - frontend
+      - backend
+
+volumes:
+  mysqldata:
+
