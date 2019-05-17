@@ -19,11 +19,7 @@ services:
       - mysql
 
   nginx:
-    image: nginx:latest
-    volumes:
-      - type: bind
-        source: /var/jenkins_home/workspace/dockertodo/nginx.conf
-        target: /etc/nginx/nginx.conf
+    build: ./nginx
     ports:
       - target: 80
         published: 80
