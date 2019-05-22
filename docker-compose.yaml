@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   frontend:
-    build: /var/jenkins_home/workspace/frontend/
+    image: alinawazmamdani/frontend
   mysql:
     image: mysql:5.7
     environment:
@@ -12,12 +12,12 @@ services:
         source: mysqldataa
         target: /var/lib/mysql
   backend:
-    build: /var/jenkins_home/workspace/backend/
+    image: alinawazmamdani/backend
     depends_on:
       - mysql
 
   nginx:
-    build: ./nginx
+    image: alinawazmamdani/nginx
     ports:
       - target: 80
         published: 80
